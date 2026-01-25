@@ -1,7 +1,7 @@
 """A simple calculator module for demonstration."""
 
 
-def add(a: float, b: float) -> float:
+def add(a: float, b: float) -> str:
     """Add two numbers and return the result."""
     return a + b
 
