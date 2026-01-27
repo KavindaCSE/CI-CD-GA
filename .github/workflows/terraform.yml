@@ -1,0 +1,34 @@
+name: Terraform CI
+
+on:
+  push:
+    paths:
+      - 'Terraform/**'
+  pull_request:
+    paths:
+      - 'Terraform/**'
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.7.0
+
+      - name: Terraform Init
+        working-directory: ./Terraform
+        run: terraform init
+
+      - name: Terraform Plan
+        working-directory: ./Terraform
+        run: terraform plan -out=tfplan
+
+      - name: Terraform Apply
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        working-directory: ./Terraform
+        run: terraform apply -auto-approve tfplan
