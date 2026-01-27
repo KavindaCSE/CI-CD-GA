@@ -10,7 +10,7 @@ terraform {
 resource "time_static" "bucket_time" {}
 
 resource "aws_s3_bucket" "aws_s3_bucket" {
-  bucket = "kavinda-tf-test-2025"
+  bucket = "kavinda-tf-test-2026"
 
   tags = {
     Name        = "My bucket"
