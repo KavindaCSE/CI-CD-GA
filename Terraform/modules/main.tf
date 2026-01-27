@@ -8,8 +8,10 @@ terraform {
 }
 
 # S3 Bucket
+resource "time_static" "bucket_time" {}
+
 resource "aws_s3_bucket" "aws_s3_bucket" {
-  bucket = "kavinda-tf-test-bucket-2026"
+  bucket = "kavinda-tf-test-bucket-${formatdate("yyyyMMddHHmmss", time_static.bucket_time.rfc3339)}"
 
   tags = {
     Name        = "My bucket"
