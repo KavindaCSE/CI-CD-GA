@@ -7,6 +7,7 @@ terraform {
   }
 }
 
+# S3 Bucket
 resource "aws_s3_bucket" "aws_s3_bucket" {
   bucket = "kavinda-tf-test-bucket-2026"
 
