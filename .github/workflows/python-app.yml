@@ -10,8 +10,16 @@ on:
       - completed
   push:
     branches: [ "main" ]
+    paths:
+      - 'src/**'
+      - 'requirements.txt'
+      - '.github/workflows/python-app.yml'
   pull_request:
     branches: [ "main" ]
+    paths:
+      - 'src/**'
+      - 'requirements.txt'
+      - '.github/workflows/python-app.yml'
 
 permissions:
   contents: read
