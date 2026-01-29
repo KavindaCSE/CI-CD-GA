@@ -6,6 +6,7 @@ terraform {
     }
   }
 }
+
 # S3 Bucket
 resource "time_static" "bucket_time" {}
 
