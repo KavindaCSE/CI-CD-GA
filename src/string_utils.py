@@ -1,5 +1,6 @@
 """String utility functions for demonstration."""
 
+
 def reverse_string(s: str) -> str:
     """Reverse a string and return it."""
     return s[::-1]
