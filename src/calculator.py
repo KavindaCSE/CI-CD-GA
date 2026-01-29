@@ -19,8 +19,8 @@ def multiply(a: float, b: float) -> float:
 def divide(a: float, b: float) -> float:
     """Divide a by b and return the result.
 
-    Raises:
-        ValueError: If b is zero.
+    Raises: ValueError: If b is zero.
+    
     """
     if b == 0:
         raise ValueError("Cannot divide by zero")
