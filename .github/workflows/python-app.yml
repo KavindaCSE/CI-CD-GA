@@ -1,24 +1,28 @@
 name: Python Application CI
 
 on:
-  # Trigger AFTER Terraform completes
+  # Run AFTER Terraform finishes
   workflow_run:
     workflows: ["Terraform CI"]
     types:
       - completed
 
-  # Trigger directly if only Python changes
+  # Run ONLY when Python changes (and Terraform did NOT change)
   push:
     branches: ["main"]
     paths:
       - 'src/**'
       - 'requirements.txt'
+    paths-ignore:
+      - 'Terraform/**'
 
   pull_request:
     branches: ["main"]
     paths:
       - 'src/**'
       - 'requirements.txt'
+    paths-ignore:
+      - 'Terraform/**'
 
 jobs:
   build:
@@ -69,8 +73,7 @@ jobs:
           tags: kavindasamarawickkrama2001/ci-cd-practice:build-${{ github.run_number }}
 
       - name: Save Docker image as tar
-        run: |
-          docker save -o image.tar kavindasamarawickkrama2001/ci-cd-practice:build-${{ github.run_number }}
+        run: docker save -o image.tar kavindasamarawickkrama2001/ci-cd-practice:build-${{ github.run_number }}
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4

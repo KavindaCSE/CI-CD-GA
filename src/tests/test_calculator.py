@@ -3,7 +3,6 @@
 import pytest
 from src.calculator import add, subtract, multiply, divide
 
-
 class TestAdd:
     """Tests for the add function."""
 
