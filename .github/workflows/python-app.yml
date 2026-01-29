@@ -70,3 +70,18 @@ jobs:
           file: ./src/Dockerfile
           push: true
           tags: kavindasamarawickkrama2001/ci-cd-practice:build-${{ github.run_number }}
+
+      - name: Save Docker image as tar
+        run: |
+          docker save -o image.tar kavindasamarawickkrama2001/ci-cd-practice:build-${{ github.run_number }}
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-south-1
+
+      - name: Upload Docker image tar to S3
+        run: |
+          aws s3 cp image.tar s3://kavinda-tf-test-2026/docker-images/image-build-${{ github.run_number }}.tar
