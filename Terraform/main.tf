@@ -12,5 +12,9 @@ provider "aws" {
 }
 
 module "aws_s3_bucket" {
-  source = "./modules"
+  source = "./modules/S3"
+}
+
+module "aws_ec2_instance" {
+  source = "./modules/EC2"
 }
